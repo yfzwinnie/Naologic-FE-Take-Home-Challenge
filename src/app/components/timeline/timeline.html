@@ -1,0 +1,36 @@
+<div class="timeline-wrapper">
+  <aside class="sidebar">
+    <div class="header-cell">Work Center</div>
+    @for (wc of workCenters(); track wc.docId) {
+    <div class="wc-cell" [class.active-row]="hoveredRowId() === wc.docId">
+      {{ wc.data.name }}
+    </div>
+    }
+  </aside>
+
+  <main class="timeline-area" #scrollArea>
+    <div class="grid-container" [style.width.px]="5000">
+      <div class="today-line" [style.left.px]="todayOffset()">
+        <span class="today-label">Today</span>
+      </div>
+
+      @for (wc of workCenters(); track wc.docId) {
+      <div
+        class="timeline-row"
+        (mouseenter)="hoveredRowId.set(wc.docId)"
+        (mouseleave)="hoveredRowId.set(null)"
+      >
+        @for (order of getOrdersForRow(wc.docId); track order.docId) {
+        <div
+          class="work-order-bar"
+          [ngStyle]="calculateBarStyles(order)"
+          [attr.data-status]="order.data.status"
+        >
+          <span class="label">{{ order.data.name }}</span>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </main>
+</div>

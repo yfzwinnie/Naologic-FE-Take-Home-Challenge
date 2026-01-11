@@ -8,25 +8,28 @@ export const MOCK_WORK_CENTERS: WorkCenterDocument[] = [
   { docId: 'wc-5', docType: 'workCenter', data: { name: 'Spartan Manufacturing' } },
 ];
 
-export const generateMockData = (count: number): WorkOrderDocument[] => {
+export function generateInitialWorkOrders(count: number): WorkOrderDocument[] {
   const statuses: WorkOrderStatus[] = ['open', 'in-progress', 'complete', 'blocked'];
   const workOrders: WorkOrderDocument[] = [];
 
-  // Start from a fixed date to ensure consistency
-  const baseDate = new Date('2025-08-01');
+  // Create a tracking object for each Work Center's timeline
+  const nextAvailableDatePerWC: Record<string, Date> = {};
+
+  MOCK_WORK_CENTERS.forEach((wc) => {
+    // Start generating from a fixed point in the past
+    const startPoint = new Date('2024-12-01');
+    nextAvailableDatePerWC[wc.docId] = startPoint;
+  });
 
   for (let i = 0; i < count; i++) {
+    // Rotate through Work Centers (0, 1, 2, 3, 4, 0, 1...)
     const wc = MOCK_WORK_CENTERS[i % MOCK_WORK_CENTERS.length];
 
-    // Randomize duration between 2 and 10 days
-    const duration = Math.floor(Math.random() * 8) + 2;
+    // 1. Retrieve the specific cursor for this machine
+    const startDate = new Date(nextAvailableDatePerWC[wc.docId]);
 
-    // Stagger start dates to avoid massive overlaps for initial testing
-    // (Though your overlap detection will eventually flag these)
-    const startOffset = Math.floor(i / MOCK_WORK_CENTERS.length) * 5;
-    const startDate = new Date(baseDate);
-    startDate.setDate(baseDate.getDate() + startOffset);
-
+    // 2. Random duration (2 to 5 days)
+    const duration = Math.floor(Math.random() * 4) + 2;
     const endDate = new Date(startDate);
     endDate.setDate(startDate.getDate() + duration);
 
@@ -34,14 +37,20 @@ export const generateMockData = (count: number): WorkOrderDocument[] => {
       docId: `wo-${i}`,
       docType: 'workOrder',
       data: {
-        name: `Work Order #${i + 1}`,
+        name: wc.data.name,
         workCenterId: wc.docId,
         status: statuses[Math.floor(Math.random() * statuses.length)],
         startDate: startDate.toISOString().split('T')[0],
         endDate: endDate.toISOString().split('T')[0],
       },
     });
+
+    // 3. CRITICAL: Update the cursor for THIS Work Center only
+    // Add a 1-day gap so they don't touch
+    const nextStart = new Date(endDate);
+    nextStart.setDate(nextStart.getDate() + 1);
+    nextAvailableDatePerWC[wc.docId] = nextStart;
   }
 
   return workOrders;
-};
+}
