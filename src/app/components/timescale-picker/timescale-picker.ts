@@ -1,11 +1,12 @@
 import { Component, ElementRef, HostListener, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CaretIcon } from '../caret-icon/caret-icon';
 
 export type TimescaleType = 'Day' | 'Week' | 'Month';
 
 @Component({
   selector: 'app-timescale-picker',
-  imports: [CommonModule],
+  imports: [CommonModule, CaretIcon],
   templateUrl: './timescale-picker.html',
   styleUrl: './timescale-picker.scss',
 })

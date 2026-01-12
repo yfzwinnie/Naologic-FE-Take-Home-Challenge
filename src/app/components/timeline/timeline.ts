@@ -56,7 +56,7 @@ export class TimelineComponent {
       case 'Week':
         return 40;
       case 'Month':
-        return 5;
+        return 4;
       default:
         return 30;
     }

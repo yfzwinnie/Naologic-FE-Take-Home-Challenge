@@ -3,3 +3,38 @@
 /* Importing Bootstrap SCSS file. */
 @use 'bootstrap/scss/bootstrap';
 @use '@ng-select/ng-select/themes/default.theme.css';
+@import url('https://naologic-com-assets.naologic.com/fonts/circular-std/circular-std.css');
+
+:root {
+  --black: rgba(3, 9, 41, 1);
+  --gray: rgba(241, 243, 248, 0.75);
+  --gray-blue: rgba(104, 113, 150, 1);
+  --light-gray: rgba(230, 235, 240, 1);
+  --lighter-gray: rgba(250, 251, 253, 1);
+  --green: rgba(8, 162, 104, 1);
+  --light-green: rgba(225, 255, 204, 1);
+  --lighter-green: rgba(248, 255, 243, 1);
+  --blue: rgba(62, 64, 219, 1);
+  --light-blue: rgba(214, 216, 255, 1);
+  --lighter-blue: rgba(237, 238, 255, 1);
+  --red: rgba(177, 54, 0, 1);
+  --yellow: rgba(252, 238, 181, 1);
+  --light-yellow: rgba(255, 252, 241, 1);
+  --teal: rgba(0, 176, 191, 1);
+  --light-teal: rgba(206, 251, 255, 1);
+  --lighter-teal: rgba(228, 253, 255, 1);
+}
+
+* {
+  font-family: 'Circular Std', sans-serif;
+}
+
+h1 {
+  font-size: 24px;
+  color: var(--black);
+}
+
+body {
+  padding: 100px;
+  font-size: 14px;
+}

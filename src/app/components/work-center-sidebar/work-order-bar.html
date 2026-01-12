@@ -1,5 +1,8 @@
 <div class="bar-container" [ngStyle]="barStyles()" [class]="'status-' + order().data.status">
   <div class="bar-inner">
     <span class="order-label">{{ order().data.name }}</span>
+    <span class="status-badge" [class]="statusClass()">
+      {{ order().data.status }}
+    </span>
   </div>
 </div>

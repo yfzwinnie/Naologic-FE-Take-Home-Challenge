@@ -15,34 +15,38 @@
 
   /* Status-based Color Logic */
   &.status-open {
-    background-color: #ecfdf5; /* Light Green */
-    border-color: #10b981;
-    .order-label {
-      color: #065f46;
+    background-color: var(--lighter-teal); /* Light Green */
+    border-color: var(--light-teal);
+    .status-badge {
+      color: var(--teal);
+      background-color: var(--light-teal);
     }
   }
 
   &.status-in-progress {
-    background-color: #eff6ff; /* Light Blue */
-    border-color: #3b82f6;
-    .order-label {
-      color: #1e40af;
+    background-color: var(--lighter-blue); /* Light Blue */
+    border-color: var(--light-blue);
+    .status-badge {
+      color: var(--blue);
+      background-color: var(--light-blue);
     }
   }
 
   &.status-blocked {
-    background-color: #fef2f2; /* Light Red */
-    border-color: #ef4444;
-    .order-label {
-      color: #991b1b;
+    background-color: var(--light-yellow); /* Light Red */
+    border-color: var(--yellow);
+    .status-badge {
+      color: var(--red);
+      background-color: var(--yellow);
     }
   }
 
   &.status-complete {
-    background-color: #f8fafc; /* Light Gray */
-    border-color: #94a3b8;
-    .order-label {
-      color: #475569;
+    background-color: var(--lighter-green); /* Light Gray */
+    border-color: var(--light-green);
+    .status-badge {
+      color: var(--green);
+      background-color: var(--light-green);
     }
   }
 
@@ -58,13 +62,18 @@
     padding: 0 12px;
     height: 100%;
     overflow: hidden;
+    justify-content: space-between;
   }
 
   .order-label {
     font-size: 13px;
-    font-weight: 600;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+
+  .status-badge {
+    padding: 2px 8px;
+    border-radius: 5px;
   }
 }

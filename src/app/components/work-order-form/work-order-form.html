@@ -21,6 +21,7 @@
           [ngModel]="formData().name"
           (ngModelChange)="updateFormData({ name: $event })"
           name="woName"
+          class="form-control"
         />
       </div>
 
@@ -65,29 +66,27 @@
               class="btn btn-outline-secondary bi bi-calendar3"
               (click)="dStart.toggle()"
               type="button"
-            >
-              📅
-            </button>
+            ></button>
           </div>
         </div>
         <div class="field-group">
           <label>End date</label>
-          <input
-            class="form-control"
-            placeholder="yyyy-mm-dd"
-            name="ed"
-            [(ngModel)]="formData().endDate"
-            ngbDatepicker
-            #dEnd="ngbDatepicker"
-            (ngModelChange)="updateFormData({ endDate: $event })"
-          />
-          <button
-            class="btn btn-outline-secondary bi bi-calendar3"
-            (click)="dEnd.toggle()"
-            type="button"
-          >
-            📅
-          </button>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="endDate"
+              [(ngModel)]="formData().endDate"
+              ngbDatepicker
+              #dEnd="ngbDatepicker"
+              (ngModelChange)="updateFormData({ endDate: $event })"
+            />
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="dEnd.toggle()"
+              type="button"
+            ></button>
+          </div>
         </div>
       </div>
       @if (updateError()) {

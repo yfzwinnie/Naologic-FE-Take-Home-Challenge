@@ -15,12 +15,15 @@
 
 .drawer-panel {
   position: absolute;
+  padding: 16px 24px;
   top: 0;
   right: 0;
-  width: 480px;
+  width: 591px;
   height: 100%;
   background: #ffffff;
-  box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px 0 rgba(216, 220, 235, 1), 0 2.5px 3px -1.5px rgba(200, 207, 233, 1),
+    0 4.5px 5px -1px rgba(216, 220, 235, 1);
+  border-radius: 12px 0px 0px 12px;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -32,15 +35,18 @@
 }
 
 .drawer-header {
-  padding: 24px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--light-gray);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 
+  .title-group {
+    padding-bottom: 16px;
+  }
+
   h2 {
     font-size: 18px;
-    color: #1e293b;
+    color: var(--black);
     margin: 0;
   }
   p {
@@ -48,74 +54,87 @@
     color: #64748b;
     margin: 4px 0 0;
   }
+  .action-group {
+    display: flex;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 66px;
+    height: 32px;
+    border: none;
+    border-radius: 7px;
+  }
 
   .btn-submit {
-    background: #4f46e5; // Blue button from screenshot
     color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
+    background-color: var(--blue);
+    font-size: 15px;
   }
 
-  .field-group {
-    margin-bottom: 1.5rem;
-
-    label {
-      display: block;
-      font-size: 0.875rem;
-      color: #64748b;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .input-group {
-    display: flex;
-
-    .form-control {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      border: 1px solid #e2e8f0;
-      padding: 0.5rem;
-      flex: 1;
-    }
-
-    .btn {
-      border: 1px solid #e2e8f0;
-      border-left: none;
-      background: #f8fafc;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      padding: 0 10px;
-    }
-  }
-
-  /* Ensure the calendar popup is above the drawer content */
-  ::ng-deep .dropdown-menu {
-    z-index: 3000 !important;
-  }
-
-  .status-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+  .btn-cancel {
     margin-right: 8px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 1px 3px 0 rgba(200, 207, 233, 1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.field-group {
+  margin: 24px 0;
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--gray-blue);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.input-group {
+  display: flex;
+
+  .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem;
+    flex: 1;
   }
 
-  /* Adjust ng-select to match your form fields */
-  ::ng-deep .ng-select.ng-select-single .ng-select-container {
-    height: 42px;
+  .btn {
     border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    box-shadow: none;
+    border-left: none;
+    background: #f8fafc;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0 10px;
   }
+}
 
-  /* Ensure dropdown is above other drawer elements */
-  ::ng-deep .ng-dropdown-panel {
-    z-index: 3000;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
+/* Ensure the calendar popup is above the drawer content */
+::ng-deep .dropdown-menu {
+  z-index: 3000 !important;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Adjust ng-select to match your form fields */
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+  height: 42px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+/* Ensure dropdown is above other drawer elements */
+::ng-deep .ng-dropdown-panel {
+  z-index: 3000;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }

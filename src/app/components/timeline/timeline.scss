@@ -1,10 +1,16 @@
 .timeline-wrapper {
   display: flex;
   height: 100vh;
-  font-family: 'Circular Std', sans-serif;
+  border: 1px solid var(--light-gray);
+
+  .header-cell {
+    padding: 9px 30px;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--gray-blue);
+  }
 
   .sidebar {
-    width: 250px;
+    width: 380px;
     flex-shrink: 0;
     border-right: 1px solid #e2e8f0;
     z-index: 10;
@@ -15,9 +21,10 @@
       padding: 0 1rem;
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid var(--light-gray);
+      padding: 0 30px;
       &.active-row {
-        background: #f8fafc;
+        background: var(--lighter-gray);
       }
     }
   }
@@ -31,9 +38,9 @@
     .timeline-row {
       height: 60px;
       position: relative;
-      border-bottom: 1px solid #f1f5f9;
       background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px);
       background-size: 100px 100%; // Matches 'Day' zoom
+      margin-top: 1px solid var(--light-gray);
     }
   }
 

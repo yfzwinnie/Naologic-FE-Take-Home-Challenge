@@ -35,14 +35,6 @@
         (click)="openCreateForm(wc.docId, '2025-12-23')"
       >
         @for (order of getOrdersForRow(wc.docId); track order.docId) {
-        <!-- <div
-          class="work-order-bar"
-          [ngStyle]="calculateBarStyles(order)"
-          [attr.data-status]="order.data.status"
-          (click)="$event.stopPropagation(); openEditForm(order)"
-        >
-          <span class="label">{{ order.data.name }}</span>
-        </div> -->
         <app-work-order-bar
           [order]="order"
           [pixelsPerDay]="pixelsPerDay()"

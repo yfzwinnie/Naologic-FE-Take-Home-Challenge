@@ -2,7 +2,7 @@
   <div class="picker-trigger" (click)="toggleMenu()">
     <span class="label">Timescale</span>
     <span class="current-value">{{ currentScale() }}</span>
-    <i class="chevron" [class.open]="isOpen()">▼</i>
+    <app-caret-icon [isExpanded]="isOpen()"></app-caret-icon>
   </div>
 
   @if (isOpen()) {
