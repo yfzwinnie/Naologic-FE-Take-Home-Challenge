@@ -1,0 +1,100 @@
+<div class="drawer-overlay" [class.visible]="isOpen()" (click)="close.emit()">
+  <div class="drawer-panel" (click)="$event.stopPropagation()">
+    <header class="drawer-header">
+      <div class="title-group">
+        <h2>Work Order Details</h2>
+        <p>Specify the dates, name and status for this order</p>
+      </div>
+      <div class="action-group">
+        <button class="btn-cancel" (click)="close.emit()">Cancel</button>
+        <button class="btn-submit" (click)="onSave()">
+          {{ order()?.docId ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </header>
+
+    <form class="details-form">
+      <div class="field-group">
+        <label>Work Order Name</label>
+        <input
+          type="text"
+          [ngModel]="formData().name"
+          (ngModelChange)="updateFormData({ name: $event })"
+          name="woName"
+        />
+      </div>
+
+      <div class="field-group">
+        <label>Status</label>
+        <ng-select
+          [items]="statusOptions"
+          bindLabel="label"
+          bindValue="value"
+          [clearable]="false"
+          [searchable]="false"
+          [(ngModel)]="formData().status"
+          (ngModelChange)="updateFormData({ status: $event })"
+          name="woStatus"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            <span class="status-dot" [style.background-color]="item.color"></span>
+            {{ item.label }}
+          </ng-template>
+
+          <ng-template ng-option-tmp let-item="item">
+            <span class="status-dot" [style.background-color]="item.color"></span>
+            {{ item.label }}
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <div class="date-row">
+        <div class="field-group">
+          <label>Start date</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="startDate"
+              [(ngModel)]="formData().startDate"
+              ngbDatepicker
+              #dStart="ngbDatepicker"
+              (ngModelChange)="updateFormData({ startDate: $event })"
+            />
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="dStart.toggle()"
+              type="button"
+            >
+              📅
+            </button>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>End date</label>
+          <input
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="ed"
+            [(ngModel)]="formData().endDate"
+            ngbDatepicker
+            #dEnd="ngbDatepicker"
+            (ngModelChange)="updateFormData({ endDate: $event })"
+          />
+          <button
+            class="btn btn-outline-secondary bi bi-calendar3"
+            (click)="dEnd.toggle()"
+            type="button"
+          >
+            📅
+          </button>
+        </div>
+      </div>
+      @if (updateError()) {
+      <div class="error-message">
+        {{ updateError() }}
+      </div>
+      }
+    </form>
+  </div>
+</div>

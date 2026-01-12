@@ -13,11 +13,17 @@ import { WorkOrderDocument } from '../../models/work-order.model';
 import { WorkOrderService } from '../../services/work-order.service';
 import { TimelineHeaderComponent } from '../timeline-header/timeline-header';
 import { TimescalePickerComponent } from '../timescale-picker/timescale-picker';
+import { WorkOrderFormComponent } from '../work-order-form/work-order-form';
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [CommonModule, TimelineHeaderComponent, TimescalePickerComponent],
+  imports: [
+    CommonModule,
+    TimelineHeaderComponent,
+    TimescalePickerComponent,
+    WorkOrderFormComponent,
+  ],
   templateUrl: './timeline.html',
   styleUrls: ['./timeline.scss'],
 })
@@ -31,6 +37,10 @@ export class TimelineComponent {
   workCenters = this.workOrderService.workCenters;
   currentTimescale = signal<'Day' | 'Week' | 'Month'>('Month');
   hoveredRowId = signal<string | null>(null);
+  selectedOrder = signal<WorkOrderDocument | null>(null);
+  isDrawerOpen = signal(false);
+
+  updateWorkOrderError = signal<string | null>(null);
 
   // Constants for our "Coordinate System"
   private readonly TIMELINE_START = new Date('2025-01-01').getTime();
@@ -110,5 +120,39 @@ export class TimelineComponent {
       left: `${left}px`,
       width: `${width}px`,
     };
+  }
+
+  // Handle clicking an existing bar
+  openEditForm(order: WorkOrderDocument) {
+    this.selectedOrder.set(order);
+    this.isDrawerOpen.set(true);
+  }
+
+  // Handle clicking an empty spot
+  openCreateForm(workCenterId: string, clickedDate: string) {
+    this.selectedOrder.set({
+      docId: '',
+      docType: 'workOrder',
+      data: {
+        name: 'New Work Order',
+        status: 'open',
+        startDate: clickedDate,
+        endDate: clickedDate, // Default to 1-day duration
+        workCenterId: workCenterId,
+      },
+    });
+    this.isDrawerOpen.set(true);
+  }
+
+  handleSaveOrder(updatedOrder: WorkOrderDocument) {
+    const updateWorkOrderResult = this.workOrderService.upsertWorkOrder(updatedOrder);
+    if (!updateWorkOrderResult.success) {
+      // upsertWorkOrder.message may be undefined; use set with null fallback
+      this.updateWorkOrderError.set(updateWorkOrderResult.message ?? 'An unknown error occurred.');
+    } else {
+      // clear previous error on success
+      this.updateWorkOrderError.set(null);
+      this.isDrawerOpen.set(false);
+    }
   }
 }

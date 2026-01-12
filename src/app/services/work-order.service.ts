@@ -42,7 +42,7 @@ export class WorkOrderService {
   /**
    * Add or Update a Work Order
    */
-  upsertWorkOrder(order: Partial<WorkOrderDocument>) {
+  upsertWorkOrder(order: Partial<WorkOrderDocument>): { success: boolean; message?: string } {
     const isOverlap = this.checkOverlap(
       order.data!.workCenterId,
       order.data!.startDate,
@@ -51,7 +51,7 @@ export class WorkOrderService {
     );
 
     if (isOverlap) {
-      throw new Error('Overlap detected: This machine is already booked for these dates.');
+      return { success: false, message: 'This machine is already booked for these dates.' };
     }
 
     this._workOrders.update((current) => {
@@ -66,6 +66,8 @@ export class WorkOrderService {
         return [...current, order as WorkOrderDocument];
       }
     });
+
+    return { success: true };
   }
 
   /**

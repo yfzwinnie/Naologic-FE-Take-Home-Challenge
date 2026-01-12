@@ -36,3 +36,11 @@ export interface WorkOrderDocument extends BaseDocument {
     endDate: string; // ISO format: "YYYY-MM-DD"
   };
 }
+
+export interface WorkOrderFormModel {
+  name: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  workCenterId?: string;
+}
