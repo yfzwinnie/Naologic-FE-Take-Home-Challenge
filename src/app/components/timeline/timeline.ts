@@ -10,11 +10,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { WorkOrderDocument } from '../../models/work-order.model';
 import { WorkOrderService } from '../../services/work-order.service';
+import { TimelineHeaderComponent } from '../timeline-header/timeline-header';
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TimelineHeaderComponent],
   templateUrl: './timeline.html',
   styleUrls: ['./timeline.scss'],
 })
@@ -26,7 +27,7 @@ export class TimelineComponent {
 
   // State Signals
   workCenters = this.workOrderService.workCenters;
-  currentTimescale = signal<'Day' | 'Week' | 'Month'>('Day');
+  currentTimescale = signal<'Day' | 'Week' | 'Month'>('Month');
   hoveredRowId = signal<string | null>(null);
 
   // Constants for our "Coordinate System"
@@ -39,9 +40,9 @@ export class TimelineComponent {
       case 'Day':
         return 100;
       case 'Week':
-        return 30;
+        return 40;
       case 'Month':
-        return 8;
+        return 5;
       default:
         return 30;
     }

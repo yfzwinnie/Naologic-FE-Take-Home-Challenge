@@ -1,0 +1,9 @@
+<div class="header-container">
+  @for (segment of headerSegments(); track segment.date.getTime()) {
+  <div class="month-segment" [style.width.px]="segment.width">
+    <div class="month-label">
+      {{ segment.label }}
+    </div>
+  </div>
+  }
+</div>

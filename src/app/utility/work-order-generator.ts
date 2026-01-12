@@ -28,8 +28,12 @@ export function generateInitialWorkOrders(count: number): WorkOrderDocument[] {
     // 1. Retrieve the specific cursor for this machine
     const startDate = new Date(nextAvailableDatePerWC[wc.docId]);
 
-    // 2. Random duration (2 to 5 days)
-    const duration = Math.floor(Math.random() * 4) + 2;
+    // 1. Random gap between orders (0 to 10 days)
+    const gap = Math.floor(Math.random() * 10);
+    startDate.setDate(startDate.getDate() + gap);
+
+    // 2. INCREASED DURATION: Spans multiple months (20 to 90 days)
+    const duration = Math.floor(Math.random() * 70) + 20;
     const endDate = new Date(startDate);
     endDate.setDate(startDate.getDate() + duration);
 
@@ -37,7 +41,7 @@ export function generateInitialWorkOrders(count: number): WorkOrderDocument[] {
       docId: `wo-${i}`,
       docType: 'workOrder',
       data: {
-        name: wc.data.name,
+        name: MOCK_WORK_CENTERS[Math.floor(Math.random() * MOCK_WORK_CENTERS.length)].data.name,
         workCenterId: wc.docId,
         status: statuses[Math.floor(Math.random() * statuses.length)],
         startDate: startDate.toISOString().split('T')[0],
@@ -45,8 +49,7 @@ export function generateInitialWorkOrders(count: number): WorkOrderDocument[] {
       },
     });
 
-    // 3. CRITICAL: Update the cursor for THIS Work Center only
-    // Add a 1-day gap so they don't touch
+    // 3. Update cursor for the next order on this machine
     const nextStart = new Date(endDate);
     nextStart.setDate(nextStart.getDate() + 1);
     nextAvailableDatePerWC[wc.docId] = nextStart;

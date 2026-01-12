@@ -1,0 +1,27 @@
+/* timeline-header.component.scss */
+.header-container {
+  display: flex;
+  height: 50px; // Slightly shorter for a cleaner look
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  .month-segment {
+    flex-shrink: 0;
+    border-right: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center; // Vertically center the text
+
+    .month-label {
+      padding-left: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

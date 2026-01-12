@@ -10,6 +10,7 @@
 
   <main class="timeline-area" #scrollArea>
     <div class="grid-container" [style.width.px]="5000">
+      <app-timeline-header [pixelsPerDay]="pixelsPerDay()"> </app-timeline-header>
       <div class="today-line" [style.left.px]="todayOffset()">
         <span class="today-label">Today</span>
       </div>
