@@ -1,0 +1,58 @@
+.timescale-container {
+  position: relative;
+  font-family: sans-serif;
+  width: 200px;
+
+  .picker-trigger {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    padding: 2px;
+    cursor: pointer;
+    font-size: 14px;
+
+    .label {
+      padding: 6px 12px;
+      color: #64748b;
+      background: #f8fafc;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .current-value {
+      padding: 6px 12px;
+      color: #2563eb; // Matches the blue in your screenshot
+      font-weight: 500;
+    }
+  }
+
+  .dropdown-menu {
+    display: block;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 200;
+    overflow: hidden;
+
+    .menu-item {
+      padding: 10px 16px;
+      color: #1e293b;
+      cursor: pointer;
+
+      &:hover {
+        background: #f8fafc;
+      }
+
+      &.active {
+        color: #2563eb;
+        font-weight: 600;
+      }
+    }
+  }
+}

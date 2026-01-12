@@ -1,3 +1,10 @@
+<div class="timeline-toolbar">
+  <app-timescale-picker
+    [currentScale]="currentTimescale()"
+    (scaleChange)="currentTimescale.set($event)"
+  >
+  </app-timescale-picker>
+</div>
 <div class="timeline-wrapper">
   <aside class="sidebar">
     <div class="header-cell">Work Center</div>

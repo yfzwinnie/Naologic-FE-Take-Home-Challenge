@@ -1,0 +1,21 @@
+<div class="timescale-container">
+  <div class="picker-trigger" (click)="toggleMenu()">
+    <span class="label">Timescale</span>
+    <span class="current-value">{{ currentScale() }}</span>
+    <i class="chevron" [class.open]="isOpen()">▼</i>
+  </div>
+
+  @if (isOpen()) {
+  <div class="dropdown-menu">
+    @for (option of options; track option) {
+    <div
+      class="menu-item"
+      [class.active]="option === currentScale()"
+      (click)="selectOption(option)"
+    >
+      {{ option }}
+    </div>
+    }
+  </div>
+  }
+</div>

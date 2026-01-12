@@ -6,16 +6,18 @@ import {
   signal,
   viewChild,
   afterNextRender,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorkOrderDocument } from '../../models/work-order.model';
 import { WorkOrderService } from '../../services/work-order.service';
 import { TimelineHeaderComponent } from '../timeline-header/timeline-header';
+import { TimescalePickerComponent } from '../timescale-picker/timescale-picker';
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [CommonModule, TimelineHeaderComponent],
+  imports: [CommonModule, TimelineHeaderComponent, TimescalePickerComponent],
   templateUrl: './timeline.html',
   styleUrls: ['./timeline.scss'],
 })
@@ -57,14 +59,39 @@ export class TimelineComponent {
   constructor() {
     // Angular 21 hook: Runs after the DOM is rendered to handle initial scroll
     afterNextRender(() => {
-      this.scrollToToday();
+      const scale = this.currentTimescale();
+      this.scrollToToday(scale);
+    });
+
+    effect(() => {
+      const scale = this.currentTimescale();
+      this.scrollToToday(scale);
     });
   }
 
-  scrollToToday() {
-    const container = this.scrollContainer().nativeElement;
-    const centerShift = container.clientWidth / 2;
-    container.scrollLeft = this.todayOffset() - centerShift;
+  // scrollToToday() {
+  //   const container = this.scrollContainer().nativeElement;
+  //   const centerShift = container.clientWidth / 2;
+  //   container.scrollLeft = this.todayOffset() - centerShift;
+  // }
+
+  scrollToToday(scale: string) {
+    const scrollContainer = this.scrollContainer()?.nativeElement;
+    if (!scrollContainer) return;
+
+    const now = new Date();
+    // Calculate the 'left' position of 'Now' using the same math as your bars
+    const msFromAnchor = now.getTime() - this.TIMELINE_START;
+    const daysFromAnchor = msFromAnchor / (1000 * 60 * 60 * 24);
+    const targetLeft = daysFromAnchor * this.pixelsPerDay();
+
+    // Center the current time in the middle of the screen
+    const scrollOffset = targetLeft - scrollContainer.clientWidth / 2;
+
+    scrollContainer.scrollTo({
+      left: scrollOffset,
+      behavior: 'smooth', // Provides that polished ERP feel
+    });
   }
 
   getOrdersForRow(wcId: string) {
