@@ -1,0 +1,70 @@
+:host {
+  display: contents;
+}
+
+.bar-container {
+  position: absolute;
+  top: 10px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s ease;
+  border-width: 1px;
+  border-style: solid;
+
+  /* Status-based Color Logic */
+  &.status-open {
+    background-color: #ecfdf5; /* Light Green */
+    border-color: #10b981;
+    .order-label {
+      color: #065f46;
+    }
+  }
+
+  &.status-in-progress {
+    background-color: #eff6ff; /* Light Blue */
+    border-color: #3b82f6;
+    .order-label {
+      color: #1e40af;
+    }
+  }
+
+  &.status-blocked {
+    background-color: #fef2f2; /* Light Red */
+    border-color: #ef4444;
+    .order-label {
+      color: #991b1b;
+    }
+  }
+
+  &.status-complete {
+    background-color: #f8fafc; /* Light Gray */
+    border-color: #94a3b8;
+    .order-label {
+      color: #475569;
+    }
+  }
+
+  &:hover {
+    filter: brightness(0.95);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .bar-inner {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .order-label {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

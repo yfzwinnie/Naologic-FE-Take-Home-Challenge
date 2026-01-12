@@ -16,8 +16,13 @@
   </aside>
 
   <main class="timeline-area" #scrollArea>
-    <div class="grid-container" [style.width.px]="5000">
-      <app-timeline-header [pixelsPerDay]="pixelsPerDay()"> </app-timeline-header>
+    <app-timeline-header [pixelsPerDay]="pixelsPerDay()"> </app-timeline-header>
+    <div
+      class="grid-container"
+      [style.width.px]="5000"
+      [style.width.px]="totalGridWidth()"
+      [style.--px-per-day.px]="pixelsPerDay()"
+    >
       <div class="today-line" [style.left.px]="todayOffset()">
         <span class="today-label">Today</span>
       </div>
@@ -30,14 +35,20 @@
         (click)="openCreateForm(wc.docId, '2025-12-23')"
       >
         @for (order of getOrdersForRow(wc.docId); track order.docId) {
-        <div
+        <!-- <div
           class="work-order-bar"
           [ngStyle]="calculateBarStyles(order)"
           [attr.data-status]="order.data.status"
           (click)="$event.stopPropagation(); openEditForm(order)"
         >
           <span class="label">{{ order.data.name }}</span>
-        </div>
+        </div> -->
+        <app-work-order-bar
+          [order]="order"
+          [pixelsPerDay]="pixelsPerDay()"
+          (click)="$event.stopPropagation(); openEditForm(order)"
+        >
+        </app-work-order-bar>
         }
       </div>
       }

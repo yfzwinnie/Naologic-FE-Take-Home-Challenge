@@ -14,6 +14,7 @@ import { WorkOrderService } from '../../services/work-order.service';
 import { TimelineHeaderComponent } from '../timeline-header/timeline-header';
 import { TimescalePickerComponent } from '../timescale-picker/timescale-picker';
 import { WorkOrderFormComponent } from '../work-order-form/work-order-form';
+import { WorkOrderBarComponent } from '../work-center-sidebar/work-order-bar';
 
 @Component({
   selector: 'app-timeline',
@@ -23,6 +24,7 @@ import { WorkOrderFormComponent } from '../work-order-form/work-order-form';
     TimelineHeaderComponent,
     TimescalePickerComponent,
     WorkOrderFormComponent,
+    WorkOrderBarComponent,
   ],
   templateUrl: './timeline.html',
   styleUrls: ['./timeline.scss'],
@@ -58,6 +60,13 @@ export class TimelineComponent {
       default:
         return 30;
     }
+  });
+
+  // Calculate total width based on the header's month logic
+  totalGridWidth = computed(() => {
+    // This must match your header's date-range logic exactly
+    const daysInView = 365 * 2; // e.g., 2 years
+    return daysInView * this.pixelsPerDay();
   });
 
   // Today's pixel offset for the red line indicator
