@@ -1,4 +1,5 @@
-🗓️ Angular ERP Timeline
+# 🗓️ Angular ERP Timeline
+
 A high-performance, reactive production scheduling timeline built with Angular 21 and Signals. This project allows production managers to visualize work orders across different work centers, manage schedules through an interactive grid, and maintain high situational awareness with real-time UI indicators.
 
 🚀 Key Features
@@ -12,7 +13,35 @@ Color-Coded Statuses: Work order bars are visually categorized by status (Open, 
 
 Smart Auto-Scroll: Automatically centers the view on the current date upon loading or changing zoom levels.
 
-🤖 AI-Assisted Development
+## 🛠️ Getting Started
+
+Follow these steps to get your local development environment up and running.
+
+Prerequisites
+Node.js: Version 18.x or higher.
+
+Angular CLI: Version 18.x or higher.
+
+Package Manager: npm or yarn.
+
+Installation
+Clone the repository:
+
+`git clone https://github.com/yfzwinnie/Work-Order-Schedule-Timeline.git`
+
+Install the dependencies
+
+`npm install`
+
+Running the Application
+Start the development server:
+
+`npm start`
+
+Access the UI: Open your browser and navigate to http://localhost:4200/
+
+## 🤖 AI-Assisted Development
+
 This project was developed using a "Thought Partner" approach with AI. By utilizing Generative AI, I was able to accelerate the architectural design and solve complex CSS/Mathematical translation challenges in the SVG and Grid systems.
 
 How I Utilized AI
@@ -31,7 +60,8 @@ Example Prompts Used
 
 "How do I make the timeline scroll container automatically center on a specific pixel position when a signal changes?"
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
+
 Framework: Angular 21 (Standalone Components, Signals).
 
 Styling: SCSS (CSS Variables for dynamic grid scaling).
@@ -40,7 +70,8 @@ Icons: Inline SVGs with dynamic CSS transforms.
 
 Data Handling: RxJS for data streams and Signals for UI state.
 
-🔮 Roadmap: Next Steps
+## 🔮 @Upgrades
+
 To move this project from a prototype to a production-ready ERP tool, the following features are prioritized:
 
 1. ♿ Accessibility (A11y)
