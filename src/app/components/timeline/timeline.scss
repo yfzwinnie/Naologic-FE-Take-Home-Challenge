@@ -44,53 +44,45 @@
     }
   }
 
-  .work-order-bar {
+  .month-marker-container {
     position: absolute;
-    top: 10px;
-    height: 40px;
-    border-radius: 6px;
-    padding: 0 8px;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-    &[data-status='open'] {
-      background: #f1f5f9;
-      color: #64748b;
-    }
-    &[data-status='in-progress'] {
-      background: #eff6ff;
-      color: #3b82f6;
-      border: 1px solid #bfdbfe;
-    }
-    &[data-status='complete'] {
-      background: #f0fdf4;
-      color: #22c55e;
-      border: 1px solid #bbf7d0;
-    }
-    &[data-status='blocked'] {
-      background: #fef2f2;
-      color: #ef4444;
-      border: 1px solid #fecaca;
-    }
-  }
-
-  .today-line {
-    position: absolute;
-    top: 0;
+    top: 30px;
     bottom: 0;
-    width: 2px;
-    background: #ef4444;
-    z-index: 5;
-    .today-label {
-      position: absolute;
-      top: 0;
-      left: 5px;
-      color: #ef4444;
-      font-size: 10px;
-      font-weight: bold;
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Centers the badge and line on the 'left' position
+    pointer-events: none;
+
+    .marker-badge {
+      /* Layout */
+      padding: 1px 8px;
+      border-radius: 5px; // Creates the rounded "pill" look
+      width: 109px;
+      height: 22px;
+      white-space: nowrap;
+      margin-left: 80px;
+      z-index: 50;
+
+      /* Typography */
+      font-size: 14px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--blue); // Darker blue text
+
+      /* Colors from your image */
+      background-color: var(--light-lavender); // Light lavender/blue background
+      // border: 1px solid var(--light-blue); // Subtle border
+
+      /* Positioning */
+      transform: translateY(10px); // Adjust to sit just below your month header
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .marker-line {
+      flex-grow: 1;
+      width: 3px;
+      background-color: var(--light-blue);
     }
   }
 }

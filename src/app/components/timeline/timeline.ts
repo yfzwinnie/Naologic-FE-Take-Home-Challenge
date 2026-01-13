@@ -79,37 +79,65 @@ export class TimelineComponent {
     // Angular 21 hook: Runs after the DOM is rendered to handle initial scroll
     afterNextRender(() => {
       const scale = this.currentTimescale();
-      this.scrollToToday(scale);
+      this.scrollToCurrentMonth();
     });
 
     effect(() => {
-      const scale = this.currentTimescale();
-      this.scrollToToday(scale);
+      // We "track" these signals by reading them
+      this.pixelsPerDay();
+      const targetPos = this.monthMarkerLeft();
+
+      // Use a small timeout to ensure the grid has recalculated its total
+      // width in the DOM before we try to scroll to a specific pixel
+      setTimeout(() => {
+        this.scrollToPosition(targetPos);
+      }, 50);
     });
   }
 
-  // scrollToToday() {
-  //   const container = this.scrollContainer().nativeElement;
-  //   const centerShift = container.clientWidth / 2;
-  //   container.scrollLeft = this.todayOffset() - centerShift;
-  // }
+  private scrollToPosition(leftPos: number) {
+    const container = this.scrollContainer()?.nativeElement;
+    if (!container) return;
 
-  scrollToToday(scale: string) {
-    const scrollContainer = this.scrollContainer()?.nativeElement;
-    if (!scrollContainer) return;
+    // Centers the marker in the middle of the viewport
+    const centerOffset = container.clientWidth / 2;
 
+    container.scrollTo({
+      left: leftPos - centerOffset,
+      behavior: 'smooth',
+    });
+  }
+
+  // 1. Calculate the start of the month
+  currentMonthStart = computed(() => {
     const now = new Date();
-    // Calculate the 'left' position of 'Now' using the same math as your bars
-    const msFromAnchor = now.getTime() - this.TIMELINE_START;
-    const daysFromAnchor = msFromAnchor / (1000 * 60 * 60 * 24);
-    const targetLeft = daysFromAnchor * this.pixelsPerDay();
+    return new Date(now.getFullYear(), now.getMonth(), 1, 0, 0, 0);
+  });
 
-    // Center the current time in the middle of the screen
-    const scrollOffset = targetLeft - scrollContainer.clientWidth / 2;
+  // 2. Calculate the pixel position relative to your TIMELINE_START
+  monthMarkerLeft = computed(() => {
+    const start = this.currentMonthStart();
+    const timelineStart = new Date('2024-12-01T00:00:00'); // Your anchor date
 
-    scrollContainer.scrollTo({
-      left: scrollOffset,
-      behavior: 'smooth', // Provides that polished ERP feel
+    const diffMs = start.getTime() - timelineStart.getTime();
+    const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+    return diffDays * this.pixelsPerDay();
+  });
+
+  scrollToCurrentMonth() {
+    const container = this.scrollContainer()?.nativeElement;
+    if (!container) return;
+
+    // Use the signal you already created for the marker's position
+    const targetLeft = this.monthMarkerLeft();
+
+    // Center the line by subtracting half of the container width
+    const scrollPosition = targetLeft - container.clientWidth / 2;
+
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth', // Makes the transition feel high-end
     });
   }
 

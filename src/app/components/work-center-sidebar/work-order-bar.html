@@ -2,7 +2,9 @@
   <div class="bar-inner">
     <span class="order-label">{{ order().data.name }}</span>
     <span class="status-badge" [class]="statusClass()">
-      {{ order().data.status }}
+      {{
+        order().data.status === 'in-progress' ? 'In progress' : (order().data.status | titlecase)
+      }}
     </span>
   </div>
 </div>

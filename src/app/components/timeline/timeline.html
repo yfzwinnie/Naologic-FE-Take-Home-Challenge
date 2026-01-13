@@ -23,8 +23,9 @@
       [style.width.px]="totalGridWidth()"
       [style.--px-per-day.px]="pixelsPerDay()"
     >
-      <div class="today-line" [style.left.px]="todayOffset()">
-        <span class="today-label">Today</span>
+      <div class="month-marker-container" [style.left.px]="monthMarkerLeft()">
+        <div class="marker-badge">Current month</div>
+        <div class="marker-line"></div>
       </div>
 
       @for (wc of workCenters(); track wc.docId) {

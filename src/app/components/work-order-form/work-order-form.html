@@ -38,13 +38,11 @@
           name="woStatus"
         >
           <ng-template ng-label-tmp let-item="item">
-            <span class="status-dot" [style.background-color]="item.color"></span>
-            {{ item.label }}
+            <span class="status-dot" [class]="'status-' + item.value">{{ item.label }}</span>
           </ng-template>
 
           <ng-template ng-option-tmp let-item="item">
-            <span class="status-dot" [style.background-color]="item.color"></span>
-            {{ item.label }}
+            <span class="status-dot" [class]="'status-' + item.value">{{ item.label }}</span>
           </ng-template>
         </ng-select>
       </div>

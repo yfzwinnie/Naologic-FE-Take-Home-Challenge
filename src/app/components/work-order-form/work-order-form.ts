@@ -36,10 +36,10 @@ export class WorkOrderFormComponent {
 
   // Define status options for ng-select
   statusOptions = [
-    { value: 'open', label: 'Open', color: '#059669' },
-    { value: 'in-progress', label: 'In Progress', color: '#2563eb' },
-    { value: 'blocked', label: 'Blocked', color: '#e11d48' },
-    { value: 'complete', label: 'Complete', color: '#64748b' },
+    { value: 'open', label: 'Open' },
+    { value: 'in-progress', label: 'In Progress' },
+    { value: 'blocked', label: 'Blocked' },
+    { value: 'complete', label: 'Complete' },
   ];
 
   // Local state for the form fields

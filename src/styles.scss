@@ -6,23 +6,24 @@
 @import url('https://naologic-com-assets.naologic.com/fonts/circular-std/circular-std.css');
 
 :root {
-  --black: rgba(3, 9, 41, 1);
-  --gray: rgba(241, 243, 248, 0.75);
-  --gray-blue: rgba(104, 113, 150, 1);
-  --light-gray: rgba(230, 235, 240, 1);
-  --lighter-gray: rgba(250, 251, 253, 1);
-  --green: rgba(8, 162, 104, 1);
-  --light-green: rgba(225, 255, 204, 1);
-  --lighter-green: rgba(248, 255, 243, 1);
-  --blue: rgba(62, 64, 219, 1);
-  --light-blue: rgba(214, 216, 255, 1);
-  --lighter-blue: rgba(237, 238, 255, 1);
-  --red: rgba(177, 54, 0, 1);
-  --yellow: rgba(252, 238, 181, 1);
-  --light-yellow: rgba(255, 252, 241, 1);
-  --teal: rgba(0, 176, 191, 1);
-  --light-teal: rgba(206, 251, 255, 1);
-  --lighter-teal: rgba(228, 253, 255, 1);
+  --black: #030929;
+  --gray: #f1f3f8;
+  --gray-blue: #687196;
+  --light-gray: #e6ebf0;
+  --lighter-gray: #fafbfd;
+  --green: #08a268;
+  --light-green: #e1ffcc;
+  --lighter-green: #f8fff3;
+  --blue: #3e40db;
+  --light-blue: #d6d8ff;
+  --lighter-blue: #edeeff;
+  --red: #b13600;
+  --yellow: #fceeb5;
+  --light-yellow: #fffcf1;
+  --teal: #00b0bf;
+  --light-teal: #cefbff;
+  --lighter-teal: #e4fdff;
+  --light-lavender: #d4d7ff;
 }
 
 * {
