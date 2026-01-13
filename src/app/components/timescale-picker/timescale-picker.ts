@@ -14,15 +14,11 @@ export class TimescalePickerComponent {
   currentScale = input.required<TimescaleType>();
   scaleChange = output<TimescaleType>();
 
-  // Use a signal for UI state for better performance
   isOpen = signal(false);
   options: TimescaleType[] = ['Day', 'Week', 'Month'];
 
   constructor(private eRef: ElementRef) {}
 
-  /**
-   * Closes the dropdown if a click occurs outside the component
-   */
   @HostListener('document:click', ['$event'])
   clickout(event: Event) {
     if (!this.eRef.nativeElement.contains(event.target)) {

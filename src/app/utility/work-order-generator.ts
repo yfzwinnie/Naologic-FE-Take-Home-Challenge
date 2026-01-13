@@ -32,7 +32,7 @@ export function generateInitialWorkOrders(count: number): WorkOrderDocument[] {
     const gap = Math.floor(Math.random() * 10);
     startDate.setDate(startDate.getDate() + gap);
 
-    // 2. INCREASED DURATION: Spans multiple months (20 to 90 days)
+    // 2. INCREASED DURATION: Spans multiple months (70 to 110 days)
     const duration = Math.floor(Math.random() * 100) + 70;
     const endDate = new Date(startDate);
     endDate.setDate(startDate.getDate() + duration);

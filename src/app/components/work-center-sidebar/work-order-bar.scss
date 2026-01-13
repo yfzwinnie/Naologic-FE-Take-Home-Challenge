@@ -13,9 +13,8 @@
   border-width: 1px;
   border-style: solid;
 
-  /* Status-based Color Logic */
   &.status-open {
-    background-color: var(--lighter-teal); /* Light Green */
+    background-color: var(--lighter-teal);
     border-color: var(--light-teal);
     .status-badge {
       color: var(--teal);
@@ -24,7 +23,7 @@
   }
 
   &.status-in-progress {
-    background-color: var(--lighter-blue); /* Light Blue */
+    background-color: var(--lighter-blue);
     border-color: var(--light-blue);
     .status-badge {
       color: var(--blue);
@@ -33,7 +32,7 @@
   }
 
   &.status-blocked {
-    background-color: var(--light-yellow); /* Light Red */
+    background-color: var(--light-yellow);
     border-color: var(--yellow);
     .status-badge {
       color: var(--red);
@@ -42,7 +41,7 @@
   }
 
   &.status-complete {
-    background-color: var(--lighter-green); /* Light Gray */
+    background-color: var(--lighter-green);
     border-color: var(--light-green);
     .status-badge {
       color: var(--green);

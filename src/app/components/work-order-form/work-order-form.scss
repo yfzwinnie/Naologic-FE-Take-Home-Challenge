@@ -1,7 +1,7 @@
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.2); // Backdrop dimming
+  background: rgba(15, 23, 42, 0.2);
   z-index: 2000;
   opacity: 0;
   visibility: hidden;
@@ -121,27 +121,26 @@
   border-radius: 5px;
   padding: 3px 8px;
 
-  /* Status-based Color Logic */
   &.status-open {
-    background-color: var(--lighter-teal); /* Light Green */
+    background-color: var(--lighter-teal);
     border-color: var(--light-teal);
     color: var(--teal);
   }
 
   &.status-in-progress {
-    background-color: var(--lighter-blue); /* Light Blue */
+    background-color: var(--lighter-blue);
     border-color: var(--light-blue);
     color: var(--blue);
   }
 
   &.status-blocked {
-    background-color: var(--light-yellow); /* Light Red */
+    background-color: var(--light-yellow);
     border-color: var(--yellow);
     color: var(--red);
   }
 
   &.status-complete {
-    background-color: var(--lighter-green); /* Light Gray */
+    background-color: var(--lighter-green);
     border-color: var(--light-green);
     color: var(--green);
   }
@@ -160,4 +159,8 @@
   z-index: 3000;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  color: red;
 }

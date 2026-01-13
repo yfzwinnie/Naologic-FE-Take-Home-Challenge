@@ -8,7 +8,7 @@
       <div class="action-group">
         <button class="btn-cancel" (click)="close.emit()">Cancel</button>
         <button class="btn-submit" (click)="onSave()">
-          {{ order()?.docId ? 'Update' : 'Create' }}
+          {{ order()?.docId ? 'Save' : 'Create' }}
         </button>
       </div>
     </header>

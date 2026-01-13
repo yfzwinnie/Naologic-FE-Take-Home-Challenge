@@ -6,11 +6,9 @@ import { generateInitialWorkOrders, MOCK_WORK_CENTERS } from '../utility/work-or
   providedIn: 'root',
 })
 export class WorkOrderService {
-  // 1. Data Source Signals
   readonly workCenters = signal<WorkCenterDocument[]>(MOCK_WORK_CENTERS);
   private readonly _workOrders = signal<WorkOrderDocument[]>(generateInitialWorkOrders(1000));
 
-  // 2. Public Read-only Signal
   readonly workOrders = this._workOrders.asReadonly();
 
   /**
@@ -39,9 +37,6 @@ export class WorkOrderService {
     });
   }
 
-  /**
-   * Add or Update a Work Order
-   */
   upsertWorkOrder(order: Partial<WorkOrderDocument>): { success: boolean; message?: string } {
     const isOverlap = this.checkOverlap(
       order.data!.workCenterId,
@@ -57,12 +52,10 @@ export class WorkOrderService {
     this._workOrders.update((current) => {
       const index = current.findIndex((o) => o.docId === order.docId);
       if (index > -1) {
-        // Update existing
         const updated = [...current];
         updated[index] = { ...current[index], ...order } as WorkOrderDocument;
         return updated;
       } else {
-        // Add new
         return [...current, order as WorkOrderDocument];
       }
     });
@@ -70,9 +63,6 @@ export class WorkOrderService {
     return { success: true };
   }
 
-  /**
-   * Delete a Work Order
-   */
   deleteWorkOrder(docId: string) {
     this._workOrders.update((current) => current.filter((o) => o.docId !== docId));
   }

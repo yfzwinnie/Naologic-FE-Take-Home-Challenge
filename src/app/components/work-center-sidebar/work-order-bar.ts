@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./work-order-bar.scss'],
 })
 export class WorkOrderBarComponent {
-  // Inputs from the parent TimelineComponent
   order = input.required<WorkOrderDocument>();
   pixelsPerDay = input.required<number>();
 

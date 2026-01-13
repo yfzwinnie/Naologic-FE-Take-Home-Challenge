@@ -1,59 +1,64 @@
-# WorkOrderScheduleTimeline
+🗓️ Angular ERP Timeline
+A high-performance, reactive production scheduling timeline built with Angular 21 and Signals. This project allows production managers to visualize work orders across different work centers, manage schedules through an interactive grid, and maintain high situational awareness with real-time UI indicators.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
+🚀 Key Features
+Reactive Timeline Grid: Utilizes Angular Signals for high-performance rendering of thousands of grid lines and work order bars.
 
-## Development server
+Dynamic Zooming: Supports "Day," "Week," and "Month" views, automatically recalculating all positions via computed signals.
 
-To start a local development server, run:
+Contextual UI Markers: Includes a custom "Current Month" milestone badge and a mouse-tracking "Ghost Bar" for intuitive scheduling.
 
-```bash
-ng serve
-```
+Color-Coded Statuses: Work order bars are visually categorized by status (Open, In progress, Blocked, Complete) for immediate recognition.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Smart Auto-Scroll: Automatically centers the view on the current date upon loading or changing zoom levels.
 
-## Code scaffolding
+🤖 AI-Assisted Development
+This project was developed using a "Thought Partner" approach with AI. By utilizing Generative AI, I was able to accelerate the architectural design and solve complex CSS/Mathematical translation challenges in the SVG and Grid systems.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+How I Utilized AI
+Mathematical Translations: AI helped calculate the matrix() transformations for SVG icons and the pixel-per-day logic for date positioning.
 
-```bash
-ng generate component component-name
-```
+Component Architecture: Used AI to brainstorm the "Dumb/Smart" component split, ensuring the WorkOrderBar remains performant by only reacting to signal inputs.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Refinement Iterations: I provided visual screenshots of the desired UI, and the AI helped translate those visual styles into specific SCSS variables and clip-path properties.
 
-```bash
-ng generate --help
-```
+Example Prompts Used
+"How do I rotate an SVG path if the current transform is a complex matrix?"
 
-## Building
+"Create an Angular computed signal to calculate a work order bar's width based on a pixelsPerDay input."
 
-To build the project run:
+"I want the current month marker to look like a rounded lavender pill badge centered on the first day of the month."
 
-```bash
-ng build
-```
+"How do I make the timeline scroll container automatically center on a specific pixel position when a signal changes?"
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+🛠️ Tech Stack
+Framework: Angular 21 (Standalone Components, Signals).
 
-## Running unit tests
+Styling: SCSS (CSS Variables for dynamic grid scaling).
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Icons: Inline SVGs with dynamic CSS transforms.
 
-```bash
-ng test
-```
+Data Handling: RxJS for data streams and Signals for UI state.
 
-## Running end-to-end tests
+🔮 Roadmap: Next Steps
+To move this project from a prototype to a production-ready ERP tool, the following features are prioritized:
 
-For end-to-end (e2e) testing, run:
+1. ♿ Accessibility (A11y)
+   Keyboard Navigation: Implement tab-navigation to allow users to move between work orders and open the edit drawer using only a keyboard.
 
-```bash
-ng e2e
-```
+ARIA Labels: Add dynamic aria-label attributes to work order bars describing the order name, status, and dates for screen readers.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+2. 👻 Advanced Hover Interaction
+   Ghost Bar Logic: Implement a "Ghost Bar" that appears when hovering over empty grid space, snapping to the nearest day to preview where a new order would be created.
 
-## Additional Resources
+Contextual Tooltips: Show a "Click to Add" label that follows the cursor within the ghost bar boundaries.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. 💾 Local Storage Persistence
+   State Recovery: Implement a service to save the user's current timescale and scrollPosition to localStorage so the view persists after a page refresh.
+
+Mock Data Sync: Cache generated mock data so work orders remain consistent across sessions.
+
+4. 🧪 Robust Testing
+   Unit Tests: Write Jasmine/Karma tests for the date-to-pixel calculation logic to ensure no "off-by-one" errors occur across different timezones.
+
+E2E Tests: Implement Cypress or Playwright tests to simulate a user changing the zoom level and verifying the "Current Month" marker is still visible and correctly positioned.

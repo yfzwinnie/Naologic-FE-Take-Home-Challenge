@@ -25,16 +25,13 @@ type WorkOrderFormState = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkOrderFormComponent {
-  // Inputs from the parent Timeline
   isOpen = input.required<boolean>();
   order = input<WorkOrderDocument | null>(null);
   updateError = input<string | null>(null);
 
-  // Outputs to communicate back to the parent
   close = output<void>();
   save = output<WorkOrderDocument>();
 
-  // Define status options for ng-select
   statusOptions = [
     { value: 'open', label: 'Open' },
     { value: 'in-progress', label: 'In Progress' },
@@ -42,7 +39,6 @@ export class WorkOrderFormComponent {
     { value: 'complete', label: 'Complete' },
   ];
 
-  // Local state for the form fields
   formData = signal<{
     name: string;
     status: WorkOrderStatus | string;
@@ -90,7 +86,6 @@ export class WorkOrderFormComponent {
     const currentOrder = this.order();
     if (!currentOrder) return;
 
-    // Merge form changes back into the document structure
     const updatedOrder: WorkOrderDocument = {
       ...currentOrder,
       data: {
