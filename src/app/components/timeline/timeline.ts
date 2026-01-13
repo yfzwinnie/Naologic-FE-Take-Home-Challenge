@@ -14,7 +14,7 @@ import { WorkOrderService } from '../../services/work-order.service';
 import { TimelineHeaderComponent } from '../timeline-header/timeline-header';
 import { TimescalePickerComponent } from '../timescale-picker/timescale-picker';
 import { WorkOrderFormComponent } from '../work-order-form/work-order-form';
-import { WorkOrderBarComponent } from '../work-center-sidebar/work-order-bar';
+import { WorkOrderBarComponent } from '../work-order-bar/work-order-bar';
 
 @Component({
   selector: 'app-timeline',
